@@ -1,190 +1,361 @@
+
 # Curvature-Gradient Couplings and a Higgs-Like Scalar Potential in Kerr Spacetime
 
-**A Numerical Toy-Model Investigation**
+### A Numerical Toy-Model Study
 
 ## 1. Overview
 
-This project investigates the influence of a hypothetical curvature-gradient interaction on the local minimum of a Higgs-like scalar potential in Kerr spacetime.
+This project investigates how a hypothetical interaction between spacetime curvature gradients and a Higgs-like scalar field modifies the local minimum of a scalar potential around a rotating Kerr black hole.
 
-The numerical framework combines the Kerr Kretschmann scalar, analytical curvature derivatives, and a curvature-gradient invariant with a phenomenological trial potential, \(W_{\mathrm{trial}}\).
+The computational framework combines:
 
-The principal objective is to explore how the local potential minimum responds to the effective coupling strength and cutoff scale, while examining the mathematical consistency and numerical behavior of the implementation.
+- The Kerr Kretschmann scalar
+- Analytical radial and angular curvature derivatives
+- A curvature-gradient invariant
+- A phenomenological trial potential, $W_{\mathrm{trial}}$
+- Numerical validation and coupling-sensitivity analysis
 
-**This is an exploratory computational toy model, not a Standard Model prediction of Higgs vacuum instability.**
+**Scientific scope:** This is an exploratory numerical toy-model study, not a prediction of Standard Model Higgs vacuum instability.
+
+---
 
 ## 2. Mathematical Framework
 
-### 2.1 Kerr geometry
+### 2.1 Kerr Spacetime
 
-We use dimensionless Boyer–Lindquist radial coordinates
+We use dimensionless Boyer–Lindquist coordinates, with
 
-\[
-x=\frac{r}{r_g},\qquad r_g=\frac{GM_{\mathrm{BH}}}{c^2},
-\]
+$$
+x=\frac{r}{r_g},
+\qquad
+r_g=\frac{GM_{\mathrm{BH}}}{c^2}
+$$
 
-and the dimensionless rotation parameter \(a_*\).
+and dimensionless black-hole spin $a_*$.
 
-The outer event horizon is located at
+The outer event horizon is
 
-\[
+$$
 x_+=1+\sqrt{1-a_*^2}.
-\]
+$$
 
 The dimensionless Kerr Kretschmann scalar is
 
-\[
+$$
 K(x,\theta)=48
-\frac{x^6-15x^4a_*^2\cos^2\theta
+\frac{
+x^6-15x^4a_*^2\cos^2\theta
 +15x^2a_*^4\cos^4\theta
--a_*^6\cos^6\theta}
-{(x^2+a_*^2\cos^2\theta)^6}.
-\]
+-a_*^6\cos^6\theta
+}{
+(x^2+a_*^2\cos^2\theta)^6
+}.
+$$
 
-### 2.2 Curvature-gradient invariant
+Here, $K$ represents the physical Kretschmann scalar multiplied by $r_g^4$.
 
-We construct the dimensionless scalar
+### 2.2 Curvature-Gradient Invariant
 
-\[
+We construct the dimensionless curvature-gradient invariant
+
+$$
 G_K=
-\frac{\Delta}{\Sigma}(\partial_x K)^2
-+\frac{1}{\Sigma}(\partial_\theta K)^2,
-\]
+\frac{\Delta}{\Sigma}
+\left(\frac{\partial K}{\partial x}\right)^2
++
+\frac{1}{\Sigma}
+\left(\frac{\partial K}{\partial\theta}\right)^2,
+$$
 
 where
 
-\[
+$$
 \Delta=x^2-2x+a_*^2,
-\qquad
+$$
+
+$$
 \Sigma=x^2+a_*^2\cos^2\theta.
-\]
+$$
 
-Analytical radial and angular derivatives are implemented and compared against numerical finite-difference approximations.
+Analytical derivatives are used to calculate $G_K$. Numerical finite-difference derivatives provide an independent accuracy check.
 
-### 2.3 Trial scalar potential
+The physical curvature-gradient invariant is related to this dimensionless quantity by a factor of $r_g^{-10}$.
 
-The central phenomenological model is
+### 2.3 Proposed Trial Potential
 
-\[
+The central phenomenological model investigated in this project is
+
+$$
 \boxed{
 W_{\mathrm{trial}}(q,x,\theta)
-=-\mu^2q+\lambda q^2+\alpha G_K(x,\theta)q
+=
+-\mu^2q+\lambda q^2
++\frac{\gamma}{\hat{\Lambda}^8}G_K(x,\theta)q
 }
-\]
+$$
 
-with dimensionless model parameters and
+where:
 
-\[
-\alpha=\frac{\gamma}{\hat\Lambda^8}.
-\]
+- $q\geq0$ is a dimensionless, nonnegative scalar-amplitude variable.
+- $\mu^2$ is the dimensionless quadratic potential parameter.
+- $\lambda>0$ is the quartic coupling.
+- $\gamma$ is a hypothetical dimensionless curvature coupling.
+- $\hat{\Lambda}$ is a dimensionless cutoff parameter.
+- $G_K$ is the curvature-gradient invariant.
 
-Here \(q\geq0\) is a nonnegative scalar amplitude variable, \(\lambda>0\) is the quartic coefficient, and \(\gamma\) is an assumed coupling.
+We define the effective coupling
 
-The interaction term is introduced phenomenologically to study sensitivity to curvature gradients. It is not derived from the Standard Model or a fundamental quantum-gravity theory.
+$$
+\alpha=\frac{\gamma}{\hat{\Lambda}^8}.
+$$
 
-Minimizing the potential locally gives
+The curvature-dependent interaction is introduced as a phenomenological assumption. It is not derived from the Standard Model or an established theory of quantum gravity.
 
-\[
+### 2.4 Local Potential Minimum
+
+Minimizing the trial potential with respect to $q$, subject to $q\geq0$, gives
+
+$$
+\frac{\partial W_{\mathrm{trial}}}{\partial q}
+=
+-\mu^2+2\lambda q+\alpha G_K=0.
+$$
+
+Therefore,
+
+$$
 \boxed{
-q_{\min}(x,\theta)=
-\frac{\max[\mu^2-\alpha G_K(x,\theta),0]}{2\lambda}.
+q_{\min}(x,\theta)
+=
+\frac{
+\max\left[\mu^2-\alpha G_K(x,\theta),0\right]
+}{
+2\lambda
 }
-\]
+}
+$$
 
-This expression determines a pointwise potential minimum. It does not solve the full scalar-field equations.
+This expression describes the local minimum of the assumed potential at each coordinate point.
 
-## 3. Numerical Implementation
+It does not represent a solution of the full scalar-field equation, since spatial-gradient and kinetic contributions are neglected.
 
-The baseline calculation uses:
+---
+
+## 3. Numerical Methodology
+
+The numerical implementation uses Python, NumPy, and Matplotlib.
+
+### Baseline Parameters
 
 | Parameter | Value |
 |---|---|
-| Dimensionless Kerr spin | 0.9 |
-| Radial domain | \(1.02x_+\leq x\leq10\) |
+| Dimensionless Kerr spin, $a_*$ | 0.9 |
+| Radial coordinate | $1.02x_+\leq x\leq10$ |
 | Radial grid points | 2400 |
 | Angular grid points | 1081 |
-| Toy-model \(\mu^2\) | 1.0 |
-| Quartic coefficient \(\lambda\) | 0.5 |
-| Baseline effective coupling \(\alpha\) | 1.0 |
+| Quadratic parameter, $\mu^2$ | 1.0 |
+| Quartic coupling, $\lambda$ | 0.5 |
+| Dimensionless cutoff, $\hat{\Lambda}$ | 1.0 |
+| Hypothetical coupling, $\gamma$ | 1.0 |
+| Effective coupling, $\alpha$ | 1.0 |
 
-The numerical implementation uses NumPy for array calculations and Matplotlib for visualization.
+The Kerr curvature scalar and its analytical derivatives are evaluated on a two-dimensional radial-angular grid.
 
-Analytical derivatives are used to evaluate the curvature-gradient invariant, while finite-difference derivatives provide an independent numerical comparison.
+The curvature-gradient invariant is then used to calculate the pointwise minimum of the trial potential.
+
+A separate coupling scan examines how the result changes as $\alpha$ varies.
+
+---
 
 ## 4. Numerical Results
 
-For the baseline dimensionless toy model:
+### 4.1 Curvature-Gradient Invariant
 
-| Quantity | Result |
+For the baseline grid and black-hole spin,
+
+$$
+\max(G_K)\approx95.893488.
+$$
+
+The invariant is strongly dependent on position, particularly near the black hole.
+
+### 4.2 Critical Effective Coupling
+
+A sampled grid point first reaches $q_{\min}=0$ when
+
+$$
+\alpha G_K\geq\mu^2.
+$$
+
+The corresponding threshold on the sampled grid is
+
+$$
+\boxed{
+\alpha_{\mathrm{crit}}
+=
+\frac{\mu^2}{\max(G_K)}
+\approx0.01042824.
+}
+$$
+
+This is a model-dependent threshold for the chosen coordinate domain and sampling grid, not a universal physical phase-transition threshold.
+
+### 4.3 Coupling Sensitivity
+
+| Effective coupling | Fraction of sampled points with $q_{\min}=0$ |
 |---|---:|
-| Maximum \(G_K\) | 95.893488 |
-| Critical effective coupling | 0.01042824 |
-| Grid fraction with \(q_{\min}=0\), at \(\alpha=1\) | 3.669% |
-| Grid fraction with \(q_{\min}=0\), at \(\alpha=0.1\) | 0.8416% |
+| 0.01 | 0% |
+| 0.1 | 0.8416% |
+| 1.0 | 3.6691% |
 
-The critical coupling is defined by
+Increasing the effective coupling increases the fraction of sampled points at which the constrained local potential minimum reaches zero.
 
-\[
-\alpha_{\mathrm{crit}}=\frac{\mu^2}{\max G_K}.
-\]
+These fractions describe the chosen coordinate grid, not a proper spacetime volume fraction.
 
-It marks the onset of a zero local minimum on the sampled coordinate grid. It is not a universal physical phase-transition threshold.
+### 4.4 Illustrative Physical-Scale Comparison
 
-The results indicate that the assumed curvature-gradient interaction can strongly modify the local minimum within the dimensionless toy-model parameter regime.
+A separate calculation uses:
 
-### Physical-scale illustration
+- Black-hole mass: $10M_\odot$
+- Physical energy cutoff: 1 GeV
+- Scalar mass parameter: 88 GeV
+- Hypothetical coupling: $\gamma=1$
 
-A separate illustrative calculation considers a black hole of ten solar masses, an energy cutoff of 1 GeV, an 88 GeV scalar mass parameter, and \(\gamma=1\).
+The resulting maximum ratio of the curvature correction to the quadratic mass parameter is approximately
 
-For these assumptions, the maximum correction relative to the dimensionless quadratic mass parameter is approximately
+$$
+\boxed{
+2.2483\times10^{-201}.
+}
+$$
 
-\[
-2.25\times10^{-201}.
-\]
+This demonstrates extreme suppression under the stated illustrative assumptions.
 
-This indicates extreme suppression in the illustrative calculation. However, the chosen cutoff lies below the scalar mass scale, so this example should not be interpreted as a controlled effective-field-theory prediction.
+However, the 1 GeV cutoff is below the 88 GeV scalar mass parameter. Consequently, this example is not presented as a controlled effective-field-theory prediction.
 
-## 5. Numerical Validation
+---
 
-The implementation has been checked against several analytical and symmetry properties:
+## 5. Figures
 
-- Recovery of the Schwarzschild Kretschmann expression in the zero-spin limit.
-- Recovery of the expected equatorial expression.
-- Reflection symmetry about the equatorial plane.
-- Comparison of analytical derivatives with second-order finite-difference estimates.
-- Sensitivity of the local minimum to coupling strength and cutoff.
+### Figure 1 — Kerr Kretschmann Scalar
 
-At the baseline grid resolution, the maximum absolute finite-difference errors were approximately 0.002159 radially and 0.000478 angularly.
+![Kerr curvature map](kerr_curvature_map.png)
 
-These checks support the implementation, but do not constitute a comprehensive numerical convergence or physical-model validation study.
+The dimensionless Kretschmann scalar across the radial-angular grid for $a_*=0.9$.
 
-## 6. Figures
+The figure includes the zero-curvature contour and outer ergosphere.
 
-The repository contains three principal visualizations:
+The Kerr Kretschmann scalar is not positive-definite; negative values should not be interpreted as a general notion of negative spacetime curvature.
 
-**Kerr curvature map:** The dimensionless Kretschmann scalar across radial and angular coordinates, including its zero contour and the outer ergosphere.
+### Figure 2 — Local Scalar-Potential Minimum
 
-**Local scalar-potential minimum:** The spatial variation of the pointwise minimum for the baseline dimensionless model.
+![Local scalar-potential minimum](scalar_potential_minimum.png)
 
-**Coupling sensitivity:** The fraction of sampled grid points satisfying \(q_{\min}=0\) as a function of the effective coupling, with the critical coupling marked.
+The pointwise minimum of the hypothetical scalar potential near the rotating black hole.
 
-The plotted grid fractions are coordinate-sampling fractions, not proper spacetime volume fractions.
+The displayed region emphasizes the spatial variation of $q_{\min}$ close to the event horizon.
 
-## 7. Limitations
+Regions with $q_{\min}=0$ represent the constrained minimum of the assumed local potential, not a demonstrated physical Higgs vacuum transition.
 
-The following limitations are essential to interpreting the results:
+### Figure 3 — Effective Coupling Sensitivity
 
-- The curvature-gradient interaction is hypothetical and its coefficient is not derived from an underlying theory.
-- The model is not a calculation of the full Standard Model Higgs effective potential.
-- Quantum corrections, renormalization-group running, and loop effects are omitted.
-- The pointwise minimization neglects scalar-field kinetic and gradient terms.
-- No global field configuration or tunneling rate is calculated.
-- The physical-scale illustration is not a validated effective-field-theory prediction.
-- Numerical results depend on the chosen coordinate domain, sampling resolution, and model parameters.
+![Coupling sensitivity](coupling_sensitivity.png)
+
+The fraction of sampled grid points with $q_{\min}=0$ as a function of the effective coupling $\alpha$.
+
+The dashed vertical line marks the critical coupling calculated for the sampled grid.
+
+---
+
+## 6. Numerical Validation
+
+Several consistency checks were performed.
+
+### Schwarzschild Limit
+
+For vanishing black-hole spin,
+
+$$
+a_*=0,
+$$
+
+the Kerr Kretschmann scalar reduces to
+
+$$
+K=\frac{48}{x^6}.
+$$
+
+The numerical implementation reproduces this expression to floating-point precision.
+
+### Equatorial Limit
+
+At
+
+$$
+\theta=\frac{\pi}{2},
+$$
+
+the scalar reduces to
+
+$$
+K=\frac{48}{x^6}.
+$$
+
+The numerical implementation agrees with this analytical expression.
+
+### Reflection Symmetry
+
+The computed Kretschmann scalar satisfies reflection symmetry about the equatorial plane to floating-point precision.
+
+### Derivative Comparison
+
+Analytical derivatives were compared with numerical finite-difference estimates using second-order boundary approximations.
+
+At the baseline grid resolution:
+
+| Quantity | Maximum absolute error | Mean absolute error |
+|---|---:|---:|
+| Radial derivative | 0.002159 | 0.00000899 |
+| Angular derivative | 0.000478 | 0.00000324 |
+
+These comparisons provide useful numerical checks but do not constitute a complete grid-convergence or error-bound analysis.
+
+---
+
+## 7. Physical Interpretation and Limitations
+
+The project is subject to several important limitations.
+
+1. The curvature-gradient interaction is hypothetical, and its coupling is not derived from a fundamental theory.
+2. The scalar potential is a simplified Higgs-like model, not the full Standard Model effective potential.
+3. Renormalization-group running, quantum loop corrections, and vacuum decay rates are not calculated.
+4. The local minimization neglects field-gradient energy and does not solve a globally self-consistent scalar-field configuration.
+5. The physical validity of the effective-field-theory parameter choices has not been established.
+6. The numerical threshold depends on the selected coordinate domain and grid.
+7. The coupling-sensitivity results do not establish a physical vacuum phase transition.
+8. The model does not include gravitational backreaction from the scalar field.
+
+These limitations distinguish the computational behavior of the trial model from established physical predictions.
+
+---
 
 ## 8. Conclusion
 
-This project provides a computational framework for exploring a hypothetical curvature-gradient interaction in rotating black-hole geometry.
+This project implements a numerical framework connecting Kerr spacetime curvature, analytical curvature derivatives, and a hypothetical curvature-gradient coupling to a Higgs-like scalar potential.
 
-The principal result is a parameter-dependent modification of a local Higgs-like scalar-potential minimum, including a calculable onset threshold within the sampled dimensionless toy model.
+Within the chosen dimensionless toy-model regime, the curvature-dependent interaction produces spatially varying local potential minima and a calculable threshold for the onset of zero-minimum grid points.
 
-The work demonstrates analytical modeling, numerical implementation, validation against known geometric limits, and sensitivity analysis, while explicitly distinguishing exploratory model behavior from established physical predictions.
+The work demonstrates computational modeling, analytical implementation, numerical consistency checks, and parameter-sensitivity analysis.
+
+The results are intended as an exploratory investigation of a phenomenological model rather than evidence of a new physical mechanism for Higgs vacuum instability.
+
+---
+
+## 9. Tools and Dependencies
+
+- Python
+- NumPy
+- Matplotlib
+
+The project uses standard numerical array operations and two-dimensional visualization.
+
