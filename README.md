@@ -21,27 +21,63 @@ The computational framework combines:
 
 ### 2.1 Kerr Spacetime
 
-We use dimensionless Boyer–Lindquist coordinates, with
+We consider a Kerr black hole in Boyer–Lindquist coordinates.
+
+The dimensionless radial coordinate is defined as
 
 $$
-x={\frac{r}{r_g}, \qquad r_g=\frac{GM_{\mathrm{BH}}}{c^2}
+x = \frac{r}{r_g}
 $$
 
-and dimensionless black-hole spin $a_*$.
-
-The outer event horizon is
+where the gravitational length scale is
 
 $$
-x_+=1+\sqrt{1-a_*^2}.
+r_g = \frac{G M_{\mathrm{BH}}}{c^2}.
 $$
 
-The dimensionless Kerr Kretschmann scalar is
+The dimensionless black-hole spin parameter is
 
 $$
-K(x,\theta)=48 \frac{x^6-15x^4a_*^2\cos^2\theta +15x^2a_*^4\cos^4\theta -a_*^6\cos^6\theta}{(x^2+a_*^2\cos^2\theta)^6}.
+a_* = \frac{Jc}{G M_{\mathrm{BH}}^2},
 $$
 
-Here, $K$ represents the physical Kretschmann scalar multiplied by $r_g^4$.
+where $J$ is the black hole's angular momentum.
+
+The outer event horizon is located at
+
+$$
+x_+ = 1 + \sqrt{1-a_*^2}.
+$$
+
+We define the dimensionless Kretschmann scalar as
+
+$$
+\mathcal{K}(x,\theta)
+=
+r_g^4 R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}.
+$$
+
+For Kerr spacetime, this becomes
+
+$$
+\mathcal{K}(x,\theta)
+=
+\frac{
+48\left(
+x^6
+-15a_*^2x^4\cos^2\theta
++15a_*^4x^2\cos^4\theta
+-a_*^6\cos^6\theta
+\right)
+}{
+\left(x^2+a_*^2\cos^2\theta\right)^6
+}.
+$$
+
+Here, $R_{\mu\nu\rho\sigma}$ is the Riemann curvature tensor.
+
+The Python variable `K` represents the dimensionless quantity $\mathcal{K}$, rather than the dimensionful physical Kretschmann scalar.
+
 
 ### 2.2 Curvature-Gradient Invariant
 
