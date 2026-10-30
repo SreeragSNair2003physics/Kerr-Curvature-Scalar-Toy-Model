@@ -24,7 +24,7 @@ The computational framework combines:
 We use dimensionless Boyer–Lindquist coordinates, with
 
 $$
-x=\frac{r}{r_g}, \qquad r_g=\frac{GM_{\mathrm{BH}}}{c^2}
+x={\frac{r}{r_g}, \qquad r_g=\frac{GM_{\mathrm{BH}}}{c^2}
 $$
 
 and dimensionless black-hole spin $a_*$.
