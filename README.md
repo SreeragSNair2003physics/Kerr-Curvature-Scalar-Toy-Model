@@ -1,4 +1,3 @@
-
 # Curvature-Gradient Couplings and a Higgs-Like Scalar Potential in Kerr Spacetime
 
 ### A Numerical Toy-Model Study
@@ -8,12 +7,11 @@
 This project investigates how a hypothetical interaction between spacetime curvature gradients and a Higgs-like scalar field modifies the local minimum of a scalar potential around a rotating Kerr black hole.
 
 The computational framework combines:
-
-- The Kerr Kretschmann scalar
-- Analytical radial and angular curvature derivatives
-- A curvature-gradient invariant
-- A phenomenological trial potential, $W_{\mathrm{trial}}$
-- Numerical validation and coupling-sensitivity analysis
+* The Kerr Kretschmann scalar
+* Analytical radial and angular curvature derivatives
+* A curvature-gradient invariant
+* A phenomenological trial potential, $W_{\mathrm{trial}}$
+* Numerical validation and coupling-sensitivity analysis
 
 **Scientific scope:** This is an exploratory numerical toy-model study, not a prediction of Standard Model Higgs vacuum instability.
 
@@ -26,9 +24,7 @@ The computational framework combines:
 We use dimensionless Boyer–Lindquist coordinates, with
 
 $$
-x=\frac{r}{r_g},
-\qquad
-r_g=\frac{GM_{\mathrm{BH}}}{c^2}
+x=\frac{r}{r_g}, \qquad r_g=\frac{GM_{\mathrm{BH}}}{c^2}
 $$
 
 and dimensionless black-hole spin $a_*$.
@@ -42,14 +38,7 @@ $$
 The dimensionless Kerr Kretschmann scalar is
 
 $$
-K(x,\theta)=48
-\frac{
-x^6-15x^4a_*^2\cos^2\theta
-+15x^2a_*^4\cos^4\theta
--a_*^6\cos^6\theta
-}{
-(x^2+a_*^2\cos^2\theta)^6
-}.
+K(x,\theta)=48 \frac{x^6-15x^4a_*^2\cos^2\theta +15x^2a_*^4\cos^4\theta -a_*^6\cos^6\theta}{(x^2+a_*^2\cos^2\theta)^6}.
 $$
 
 Here, $K$ represents the physical Kretschmann scalar multiplied by $r_g^4$.
@@ -59,12 +48,7 @@ Here, $K$ represents the physical Kretschmann scalar multiplied by $r_g^4$.
 We construct the dimensionless curvature-gradient invariant
 
 $$
-G_K=
-\frac{\Delta}{\Sigma}
-\left(\frac{\partial K}{\partial x}\right)^2
-+
-\frac{1}{\Sigma}
-\left(\frac{\partial K}{\partial\theta}\right)^2,
+G_K= \frac{\Delta}{\Sigma} \left(\frac{\partial K}{\partial x}\right)^2 + \frac{1}{\Sigma} \left(\frac{\partial K}{\partial\theta}\right)^2,
 $$
 
 where
@@ -86,22 +70,16 @@ The physical curvature-gradient invariant is related to this dimensionless quant
 The central phenomenological model investigated in this project is
 
 $$
-\boxed{
-W_{\mathrm{trial}}(q,x,\theta)
-=
--\mu^2q+\lambda q^2
-+\frac{\gamma}{\hat{\Lambda}^8}G_K(x,\theta)q
-}
+W_{\mathrm{trial}}(q,x,\theta) = -\mu^2q+\lambda q^2 +\frac{\gamma}{\hat{\Lambda}^8}G_K(x,\theta)q
 $$
 
 where:
-
-- $q\geq0$ is a dimensionless, nonnegative scalar-amplitude variable.
-- $\mu^2$ is the dimensionless quadratic potential parameter.
-- $\lambda>0$ is the quartic coupling.
-- $\gamma$ is a hypothetical dimensionless curvature coupling.
-- $\hat{\Lambda}$ is a dimensionless cutoff parameter.
-- $G_K$ is the curvature-gradient invariant.
+* $q\geq0$ is a dimensionless, nonnegative scalar-amplitude variable.
+* $\mu^2$ is the dimensionless quadratic potential parameter.
+* $\lambda>0$ is the quartic coupling.
+* $\gamma$ is a hypothetical dimensionless curvature coupling.
+* $\hat{\Lambda}$ is a dimensionless cutoff parameter.
+* $G_K$ is the curvature-gradient invariant.
 
 We define the effective coupling
 
@@ -116,23 +94,13 @@ The curvature-dependent interaction is introduced as a phenomenological assumpti
 Minimizing the trial potential with respect to $q$, subject to $q\geq0$, gives
 
 $$
-\frac{\partial W_{\mathrm{trial}}}{\partial q}
-=
--\mu^2+2\lambda q+\alpha G_K=0.
+\frac{\partial W_{\mathrm{trial}}}{\partial q} = -\mu^2+2\lambda q+\alpha G_K=0.
 $$
 
 Therefore,
 
 $$
-\boxed{
-q_{\min}(x,\theta)
-=
-\frac{
-\max\left[\mu^2-\alpha G_K(x,\theta),0\right]
-}{
-2\lambda
-}
-}
+q_{\min}(x,\theta) = \frac{\max\left[\mu^2-\alpha G_K(x,\theta),0\right]}{2\lambda}
 $$
 
 This expression describes the local minimum of the assumed potential at each coordinate point.
@@ -148,7 +116,7 @@ The numerical implementation uses Python, NumPy, and Matplotlib.
 ### Baseline Parameters
 
 | Parameter | Value |
-|---|---|
+| :--- | :--- |
 | Dimensionless Kerr spin, $a_*$ | 0.9 |
 | Radial coordinate | $1.02x_+\leq x\leq10$ |
 | Radial grid points | 2400 |
@@ -190,12 +158,7 @@ $$
 The corresponding threshold on the sampled grid is
 
 $$
-\boxed{
-\alpha_{\mathrm{crit}}
-=
-\frac{\mu^2}{\max(G_K)}
-\approx0.01042824.
-}
+\alpha_{\mathrm{crit}} = \frac{\mu^2}{\max(G_K)} \approx0.01042824.
 $$
 
 This is a model-dependent threshold for the chosen coordinate domain and sampling grid, not a universal physical phase-transition threshold.
@@ -203,7 +166,7 @@ This is a model-dependent threshold for the chosen coordinate domain and samplin
 ### 4.3 Coupling Sensitivity
 
 | Effective coupling | Fraction of sampled points with $q_{\min}=0$ |
-|---|---:|
+| :--- | :--- |
 | 0.01 | 0% |
 | 0.1 | 0.8416% |
 | 1.0 | 3.6691% |
@@ -215,18 +178,15 @@ These fractions describe the chosen coordinate grid, not a proper spacetime volu
 ### 4.4 Illustrative Physical-Scale Comparison
 
 A separate calculation uses:
-
-- Black-hole mass: $10M_\odot$
-- Physical energy cutoff: 1 GeV
-- Scalar mass parameter: 88 GeV
-- Hypothetical coupling: $\gamma=1$
+* Black-hole mass: $10M_\odot$
+* Physical energy cutoff: 1 GeV
+* Scalar mass parameter: 88 GeV
+* Hypothetical coupling: $\gamma=1$
 
 The resulting maximum ratio of the curvature correction to the quadratic mass parameter is approximately
 
 $$
-\boxed{
 2.2483\times10^{-201}.
-}
 $$
 
 This demonstrates extreme suppression under the stated illustrative assumptions.
@@ -238,32 +198,16 @@ However, the 1 GeV cutoff is below the 88 GeV scalar mass parameter. Consequentl
 ## 5. Figures
 
 ### Figure 1 — Kerr Kretschmann Scalar
-
 ![Kerr curvature map](kerr_curvature_map.png)
-
-The dimensionless Kretschmann scalar across the radial-angular grid for $a_*=0.9$.
-
-The figure includes the zero-curvature contour and outer ergosphere.
-
-The Kerr Kretschmann scalar is not positive-definite; negative values should not be interpreted as a general notion of negative spacetime curvature.
+The dimensionless Kretschmann scalar across the radial-angular grid for $a_*=0.9$. The figure includes the zero-curvature contour and outer ergosphere. The Kerr Kretschmann scalar is not positive-definite; negative values should not be interpreted as a general notion of negative spacetime curvature.
 
 ### Figure 2 — Local Scalar-Potential Minimum
-
 ![Local scalar-potential minimum](scalar_potential_minimum.png)
-
-The pointwise minimum of the hypothetical scalar potential near the rotating black hole.
-
-The displayed region emphasizes the spatial variation of $q_{\min}$ close to the event horizon.
-
-Regions with $q_{\min}=0$ represent the constrained minimum of the assumed local potential, not a demonstrated physical Higgs vacuum transition.
+The pointwise minimum of the hypothetical scalar potential near the rotating black hole. The displayed region emphasizes the spatial variation of $q_{\min}$ close to the event horizon. Regions with $q_{\min}=0$ represent the constrained minimum of the assumed local potential, not a demonstrated physical Higgs vacuum transition.
 
 ### Figure 3 — Effective Coupling Sensitivity
-
 ![Coupling sensitivity](coupling_sensitivity.png)
-
-The fraction of sampled grid points with $q_{\min}=0$ as a function of the effective coupling $\alpha$.
-
-The dashed vertical line marks the critical coupling calculated for the sampled grid.
+The fraction of sampled grid points with $q_{\min}=0$ as a function of the effective coupling $\alpha$. The dashed vertical line marks the critical coupling calculated for the sampled grid.
 
 ---
 
@@ -272,7 +216,6 @@ The dashed vertical line marks the critical coupling calculated for the sampled 
 Several consistency checks were performed.
 
 ### Schwarzschild Limit
-
 For vanishing black-hole spin,
 
 $$
@@ -288,7 +231,6 @@ $$
 The numerical implementation reproduces this expression to floating-point precision.
 
 ### Equatorial Limit
-
 At
 
 $$
@@ -304,17 +246,15 @@ $$
 The numerical implementation agrees with this analytical expression.
 
 ### Reflection Symmetry
-
 The computed Kretschmann scalar satisfies reflection symmetry about the equatorial plane to floating-point precision.
 
 ### Derivative Comparison
-
 Analytical derivatives were compared with numerical finite-difference estimates using second-order boundary approximations.
 
 At the baseline grid resolution:
 
 | Quantity | Maximum absolute error | Mean absolute error |
-|---|---:|---:|
+| :--- | :--- | :--- |
 | Radial derivative | 0.002159 | 0.00000899 |
 | Angular derivative | 0.000478 | 0.00000324 |
 
@@ -353,9 +293,8 @@ The results are intended as an exploratory investigation of a phenomenological m
 
 ## 9. Tools and Dependencies
 
-- Python
-- NumPy
-- Matplotlib
+* Python
+* NumPy
+* Matplotlib
 
 The project uses standard numerical array operations and two-dimensional visualization.
-
