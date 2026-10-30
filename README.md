@@ -41,42 +41,31 @@ $$
 a_* = \frac{Jc}{G M_{\mathrm{BH}}^2},
 $$
 
+
 where $J$ is the black hole's angular momentum.
 
 The outer event horizon is located at
 
 $$
-x_+ = 1 + \sqrt{1-a_*^2}.
+x_{+} = 1 + \sqrt{1-a_{\ast}^{2}}
 $$
-
 
 We define the dimensionless Kretschmann scalar as
 
 $$
-\mathcal{K}(x,\theta) =
-r_g^4 R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}.
+\mathcal{K}(x,\theta) = r_g^{4} R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}
 $$
 
 For Kerr spacetime, this becomes
 
 $$
-\mathcal{K}(x,\theta) =
-\frac{
-48\left(
-x^6
--15a_*^2x^4\cos^2\theta
-+15a_*^4x^2\cos^4\theta
--a_*^6\cos^6\theta
-\right)
-}{
-\left(x^2+a_*^2\cos^2\theta\right)^6
-}.
+\mathcal{K}(x,\theta) = \frac{48\left(x^{6}-15a_{\ast}^{2}x^{4}\cos^{2}\theta+15a_{\ast}^{4}x^{2}\cos^{4}\theta-a_{\ast}^{6}\cos^{6}\theta\right)}{\left(x^{2}+a_{\ast}^{2}\cos^{2}\theta\right)^{6}}
 $$
-
 
 Here, $R_{\mu\nu\rho\sigma}$ is the Riemann curvature tensor.
 
 The Python variable `K` represents the dimensionless quantity $\mathcal{K}$, rather than the dimensionful physical Kretschmann scalar.
+
 
 
 ### 2.2 Curvature-Gradient Invariant
