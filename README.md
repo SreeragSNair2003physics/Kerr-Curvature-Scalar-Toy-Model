@@ -49,19 +49,18 @@ $$
 x_+ = 1 + \sqrt{1-a_*^2}.
 $$
 
+
 We define the dimensionless Kretschmann scalar as
 
 $$
-\mathcal{K}(x,\theta)
-=
+\mathcal{K}(x,\theta) =
 r_g^4 R_{\mu\nu\rho\sigma}R^{\mu\nu\rho\sigma}.
 $$
 
 For Kerr spacetime, this becomes
 
 $$
-\mathcal{K}(x,\theta)
-=
+\mathcal{K}(x,\theta) =
 \frac{
 48\left(
 x^6
@@ -73,6 +72,7 @@ x^6
 \left(x^2+a_*^2\cos^2\theta\right)^6
 }.
 $$
+
 
 Here, $R_{\mu\nu\rho\sigma}$ is the Riemann curvature tensor.
 
