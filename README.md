@@ -334,3 +334,33 @@ The results are intended as an exploratory investigation of a phenomenological m
 * Matplotlib
 
 The project uses standard numerical array operations and two-dimensional visualization.
+
+
+## Reproducing the Results
+
+Clone the repository:
+
+```bash
+git clone https://github.com/SreeragSNair2003physics/Kerr-Curvature-Scalar-Toy-Model.git
+```
+
+Enter the project directory:
+
+```bash
+cd Kerr-Curvature-Scalar-Toy-Model
+```
+
+Install the dependencies:
+
+```bash
+python -m pip install -r requirements.txt
+```
+
+Run the numerical model:
+
+```bash
+python Kerr_curvature_trial_potential.py
+```
+
+The script computes the Kerr curvature quantities, evaluates the trial scalar potential, and generates the three figures presented above.
+
